@@ -7,6 +7,8 @@ import Counter from './components/Counter'
 import UserList from './components/UserList'
 import UseMemoEx from './components/UseMemoEx'
 import UseCallback from './components/UseCallback'
+import RegisterForm from './components/RegisterForm'
+import MultiStepForm from './components/MultiStepForm'
 
 
 function App() {
@@ -15,14 +17,16 @@ function App() {
   return (
     <>
     <div className='App'>
-      {/* <h1>Use of useState</h1>
-      <button className='btn btn-success btn-lg' onClick={updateToggle}>
+      
+      {/* <button className='btn btn-success btn-lg' onClick={updateToggle}>
         {toggleOn?"ON":"OFF"}
       </button> */}
       {/* <Counter/> */}
       {/* <UserList/> */}
       {/* <UseMemoEx/> */}
-      <UseCallback/>
+      {/* <UseCallback/> */}
+      {/* <RegisterForm/> */}
+      <MultiStepForm/>
     </div>
     </>
   )

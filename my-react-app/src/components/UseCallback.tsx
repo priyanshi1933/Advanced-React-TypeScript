@@ -1,41 +1,25 @@
-import React,{useCallback,useState} from 'react'
+import React, { useCallback, useState } from 'react'
+import Todos from './Todos';
 
-type InputProps={
-    value:string;
-    onChange:(value:string)=>void;
-}
+export default function UseCallback() {
+  const [count, setCount] = useState(0);
+  const [todos, setTodos] = useState(['Todo 1', 'Todo 2', 'Todo 3']);
 
-const TextInput:React.FC<InputProps>=React.memo(({value,onChange})=>{
-    console.log("TextInput Rendered");
-    return(
-        <input value={value} onChange={(e)=>onChange(e.target.value)}/>
-    )
-})
+  // const addTodo = (() => {
+  //   setTodos([...todos, `new Todo ${todos.length + 1}`]);
+  // })
 
-
-const UseCallback :React.FC= () => {
-    const [text,setText]=useState<string>("");
-    const handleChange=useCallback((value:string):void=>{
-        setText(value)
-    },[]);
-
-    const handleSubmit = useCallback(
-  (e: React.FormEvent<HTMLFormElement>): void => {
-    e.preventDefault();
-    console.log("Submitted:", text);
-  },
-  [text]
-);
-
+  const addTodo=useCallback(()=>{
+    setTodos([...todos,`new Todo ${todos.length+1}`]);
+  },[todos])
 
   return (
     <div>
-         <form onSubmit={handleSubmit}>
-        <TextInput value={text} onChange={handleChange}/>
-         <button type="submit">Submit</button>
-        </form>
+      <h1>Optimize re-render with the help of useCallback and memo</h1>
+      <hr/>
+      <h2>Count:{count}</h2>
+      <button className='btn btn-primary' onClick={() => setCount(count + 1)}>+1</button>
+      <Todos todos={todos} onAddTodo={addTodo} />
     </div>
   )
 }
-
-export default UseCallback
